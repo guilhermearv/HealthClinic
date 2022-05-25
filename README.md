@@ -16,6 +16,38 @@ Study crud on a medical clinic composed of a .Net Core API, AngularJS FrontEnd a
 
 Init Visual studio open folder HealthClinic and start IISExpress mode debug
 
+### Create Database in Sql server
+
+- Execute sql server terminal command line below
+
+```sql
+CREATE DATABASE be3_health
+GO
+USE be3_health
+GO
+CREATE TABLE Patients(
+	CPF bigint primary key,
+	MedicalRecord nvarchar(max) NULL,
+	Name varchar(80) NULL,
+	LastName varchar(80) NULL,
+	BirthDate datetime NULL,
+	Gender varchar(20) NULL,
+	RG int NULL,
+	UF_RG varchar(2) NULL,
+	Email varchar(80) NULL,
+	CellPhone bigint NULL,
+	Phone int NULL,
+	HealthInsurancesId int NULL,	
+	HealthInsuranceNumber int NULL,	
+	HealthInsuranceDateExpirate datetime NULL
+)
+GO
+CREATE TABLE HealthInsurances (
+	Id int identity primary key,
+	Name varchar(80) NULL,
+)
+```
+
 ### Start app frontEnd
 
 - Open folder HealthClinicView in VS Code (IDE of your choice)
