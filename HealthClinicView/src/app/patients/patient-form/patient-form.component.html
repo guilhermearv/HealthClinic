@@ -1,0 +1,101 @@
+<mat-card>
+  <mat-card-title> Formulário do paciente</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="half-width">
+        <mat-label>CPF</mat-label>
+        <input matInput maxlength="14" inputmode="tel" placeholder="nome" formControlName="cpf" mask='000.000.000-00' #cpfInput>
+        <mat-error>Por favor digite um cpf valido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Email:</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="email" #emailInput>
+        <mat-icon matSuffix>mail_outline</mat-icon>
+        <mat-error>Por favor digite um email valido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Nome</mat-label>
+        <input matInput maxlength="80" inputmode="tel" placeholder="nome" formControlName="name" #nameInput>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Celular:</mat-label>
+        <input matInput placeholder="celular" formControlName="cellPhone" mask='(00) 00000-0000'>
+        <mat-error>Por favor preencha ao menos um telefone</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Sobrenome</mat-label>
+        <input matInput maxlength="80" inputmode="tel" placeholder="nome" formControlName="lastName" #lastnameInput>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Telefone:</mat-label>
+        <input matInput placeholder="telefone" formControlName="phone" mask='(00) 0000-0000'>
+        <mat-error>Por favor preencha ao menos um telefone</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="half-width">
+          <mat-label>RG:</mat-label>
+          <input matInput placeholder="rg" formControlName="rg" mask='00.000.000-A'>
+      </mat-form-field>
+
+      <div class="mat-form-field half-width">
+        <mat-radio-group matNativeControl name="gender" formControlName="gender">
+          <mat-radio-button *ngFor="let gender of genders" [value]="gender.value" color="primary" class="radio-btn">
+            {{gender.text}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field class="half-width" style="margin: 0.05em;">
+        <mat-label>UF RG</mat-label>
+        <mat-select matNativeControl name="uF_RG" formControlName="uF_RG">
+          <mat-option *ngFor="let uf of ufs" [value]="uf.value">{{ uf.text }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+      <mat-form-field class="half-width">
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput [matDatepicker]="pickerBirthDate" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerBirthDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerBirthDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Plano de saúde</mat-label>
+        <mat-select matNativeControl name="healthInsurancesId" formControlName="healthInsurancesId">
+          <mat-option *ngFor="let healthInsurance of healthInsurances" [value]="healthInsurance.id">{{ healthInsurance.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Numero carteira convênio:</mat-label>
+        <input matInput placeholder="Numero" formControlName="healthInsuranceNumber">
+      </mat-form-field>
+
+      <mat-form-field class="half-width">
+        <mat-label>Data validade cartão do convênio</mat-label>
+        <input matInput [matDatepicker]="pickerHealthInsuranceDateExpirate" formControlName="healthInsuranceDateExpirate">
+        <mat-datepicker-toggle matSuffix [for]="pickerHealthInsuranceDateExpirate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerHealthInsuranceDateExpirate></mat-datepicker>
+      </mat-form-field>
+
+      <div class="mat-form-field half-width">&nbsp;</div>
+
+      <mat-form-field class="full-width">
+        <mat-label>Prontuário</mat-label>
+        <textarea matInput placeholder="Prontuário" formControlName="medicalRecord" rows="5"></textarea>
+      </mat-form-field>
+
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Salvar</button>
+        <button mat-raised-button (click)="onCancel()">Cancelar</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

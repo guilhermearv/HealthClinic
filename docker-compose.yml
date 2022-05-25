@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+    application:
+        driver: bridge
+volumes:
+    storage-mssql:
+        driver: local
+services:    
+    mssql-developer:
+        image: justin2004/mssql_server_tiny
+        container_name: mssql-developer
+        ports:
+            - '1433:1433'
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=Secret1234
+        volumes:
+            - storage-mssql:/var/opt/mssql/data
+        networks:
+            - application                    
